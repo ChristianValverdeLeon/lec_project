@@ -28,9 +28,23 @@ services:
       - web-net
     restart: unless-stopped
 
+  portainer:
+    image: portainer/portainer-ce:latest
+    container_name: portainer
+    ports:
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    restart: unless-stopped
+    networks:
+      - web-net
+
   pagina-oficial:
     image: christian15685685678/nginx:alpine
     container_name: pagina-oficial
+    ports:
+      - "8081:80"
     volumes:
       - ./pagina-oficial:/usr/share/nginx/html:ro
     networks:
@@ -40,25 +54,28 @@ services:
   panel-control:
     image: christian15685685678/nginx:alpine
     container_name: panel-control
+    ports:
+      - "8082:80"
     volumes:
       - ./panel-control:/usr/share/nginx/html:ro
     networks:
       - web-net
     restart: unless-stopped
 
-  proxy_inverso:
-    image: christian15685685678/nginx:alpine
-    container_name: proxy_inverso
-    ports:
-      - "80:80"
-    volumes:
-      - ./reverse-proxy/default.conf:/etc/nginx/conf.d/default.conf:ro
-    networks:
-      - web-net
-    restart: unless-stopped
+  # proxy_inverso:
+  #   image: christian15685685678/nginx:alpine
+  #   container_name: proxy_inverso
+  #   ports:
+  #     - "80:80"
+  #   volumes:
+  #     - ./reverse-proxy/default.conf:/etc/nginx/conf.d/default.conf:ro
+  #   networks:
+  #     - web-net
+  #   restart: unless-stopped
 
 volumes:
   postgres_data:
+  portainer_data:
 
 networks:
   web-net:
