@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  proxy_externo:
+    image: nginx:alpine
+    container_name: proxy_externo
+    ports:
+      - "80:80"  # Proxy escuchando en el puerto 80
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf:ro  # Monta la config
+    restart: unless-stopped
