@@ -23,7 +23,7 @@ services:
       PGADMIN_DEFAULT_EMAIL: admin@tecnozero.com
       PGADMIN_DEFAULT_PASSWORD: Tecnozero1$
     ports:
-      - "8080:80"
+      - "8081:80"
     networks:
       - web-net
     restart: unless-stopped
@@ -43,8 +43,6 @@ services:
   pagina-oficial:
     image: christian15685685678/nginx:alpine
     container_name: pagina-oficial
-    ports:
-      - "8081:80"
     volumes:
       - ./pagina-oficial:/usr/share/nginx/html:ro
     networks:
@@ -54,8 +52,6 @@ services:
   panel-control:
     image: christian15685685678/nginx:alpine
     container_name: panel-control
-    ports:
-      - "8082:80"
     volumes:
       - ./panel-control:/usr/share/nginx/html:ro
     networks:
