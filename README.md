@@ -6,10 +6,10 @@ Este documento describe la configuración completa de la máquina que actúa com
 
 La máquina servidor se encuentra en la dirección IP privada 192.168.26.100. En ella se han desplegado cuatro servicios principales:
 
--Página oficial del proyecto
--Panel de administración
--Base de datos PostgreSQL
--Interfaz de gestión visual de contenedores mediante Portainer
+- Página oficial del proyecto
+- Panel de administración
+- Base de datos PostgreSQL
+- Interfaz de gestión visual de contenedores mediante Portainer
 
 
 Todos los servicios funcionan en contenedores independientes, utilizando puertos internos diferentes para evitar conflictos. El acceso externo se realiza a través de un proxy inverso (ubicado en otra máquina), lo que permite mantener una estructura organizada y escalable.
