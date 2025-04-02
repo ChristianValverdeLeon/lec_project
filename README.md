@@ -32,7 +32,7 @@ Scripts automatizados para la instalación y despliegue de contenedores
 Archivo docker-compose.yml generado automáticamente por el script principal
 
 
-Servicios desplegados y puertos
+**Servicios desplegados y puertos**
 
 - PostgreSQL: puerto interno 5432, expuesto en el 15432
 
@@ -42,7 +42,7 @@ Servicios desplegados y puertos
 
 - Panel de control: puerto interno 80, expuesto en el 8082
 
--Portainer: puerto 9000 para interfaz web de administración de contenedores
+- Portainer: puerto 9000 para interfaz web de administración de contenedores
 
 
 Cada servicio es accesible de forma local mediante su puerto, pero externamente se accede por nombre de dominio a través del proxy.
@@ -88,7 +88,6 @@ Una vez configurado el proxy inverso, los servicios serán accesibles desde inte
 http://app.exapolis.com
 
 http://admin.exapolis.com
-
 
 **Próximos pasos**
 
