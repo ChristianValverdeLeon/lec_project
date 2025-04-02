@@ -1,0 +1,40 @@
+Para usarlas manualmente se puede ejecutar:
+
+```bash
+# PostgreSQL
+docker run -d \
+  --name postgres \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=secret \
+  -e POSTGRES_DB=mydb \
+  -v postgres_data:/var/lib/postgresql/data \
+  -p 5432:5432 \
+  --network web-net \
+  --restart unless-stopped \
+  christian15685685678/postgres:final
+
+# pgAdmin
+docker run -d \
+  --name pgadmin \
+  -e PGADMIN_DEFAULT_EMAIL=admin@tecnozero.com \
+  -e PGADMIN_DEFAULT_PASSWORD=Tecnozero1$ \
+  -p 8081:80 \
+  --network web-net \
+  --restart unless-stopped \
+  christian15685685678/pgadmin4:final
+
+# Página oficial
+docker run -d \
+  --name pagina-oficial \
+  -v $(pwd)/pagina-oficial:/usr/share/nginx/html:ro \
+  --network web-net \
+  --restart unless-stopped \
+  christian15685685678/nginx:pagina
+
+# Panel de control
+docker run -d \
+  --name panel-control \
+  -v $(pwd)/panel-control:/usr/share/nginx/html:ro \
+  --network web-net \
+  --restart unless-stopped \
+  christian15685685678/nginx:panel
