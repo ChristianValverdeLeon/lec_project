@@ -48,9 +48,13 @@ Archivo docker-compose.yml generado automáticamente por el script principal
 Cada servicio es accesible de forma local mediante su puerto, pero externamente se accede por nombre de dominio a través del proxy.
 
 **_Pulls con las imagenes de docker_**
-- docker pull christian15685685678/postgres:final
-- docker pull christian15685685678/pgadmin4:final
-- docker pull christian15685685678/nginx:final
+SERVIDOR
+- docker pull christian15685685678/postgres:15
+- docker pull christian15685685678/pgadmin4:latest
+- docker pull christian15685685678/nginx:panel
+- docker pull christian15685685678/nginx:pagina
+PROXY
+- docker pull christian15685685678/nginx:proxy
 
 **_Despliegue_**
 
