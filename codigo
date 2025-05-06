@@ -1,0 +1,175 @@
+UPDATE players
+SET image_url = CONCAT('images/', LOWER(player_name), '.webp')
+WHERE image_url = 'images/default.webp';
+
+CREATE TABLE IF NOT EXISTS players (
+    player_id SERIAL PRIMARY KEY,
+    player_name VARCHAR(50) NOT NULL,
+    role VARCHAR(20) NOT NULL,
+    real_team VARCHAR(50) NOT NULL,
+    year_season INTEGER NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insertar jugadores
+INSERT INTO players (player_name, role, real_team, year_season) VALUES
+('Brokenblade', 'Top', 'G2 Esports', 2025),
+('Skewmond', 'Jungle', 'G2 Esports', 2025),
+('Caps', 'Mid', 'G2 Esports', 2025),
+('Hans Sama', 'ADC', 'G2 Esports', 2025),
+('Labrov', 'Support', 'G2 Esports', 2025),
+
+('Oscarinin', 'Top', 'Fnatic', 2025),
+('Razork', 'Jungle', 'Fnatic', 2025),
+('Humanoid', 'Mid', 'Fnatic', 2025),
+('Upset', 'ADC', 'Fnatic', 2025),
+('Mikyx', 'Support', 'Fnatic', 2025),
+
+('Myrwn', 'Top', 'Movistar KOI', 2025),
+('Elyoya', 'Jungle', 'Movistar KOI', 2025),
+('Jojopyun', 'Mid', 'Movistar KOI', 2025),
+('Supa', 'ADC', 'Movistar KOI', 2025),
+('Álvaro', 'Support', 'Movistar KOI', 2025),
+
+('Irrelevant', 'Top', 'Team BDS', 2025),
+('113', 'Jungle', 'Team BDS', 2025),
+('Nuc', 'Mid', 'Team BDS', 2025),
+('Ice', 'ADC', 'Team BDS', 2025),
+('Parus', 'Support', 'Team BDS', 2025),
+
+('Canna', 'Top', 'Karmine Corp', 2025),
+('Yike', 'Jungle', 'Karmine Corp', 2025),
+('Vladi', 'Mid', 'Karmine Corp', 2025),
+('Caliste', 'ADC', 'Karmine Corp', 2025),
+('Targamas', 'Support', 'Karmine Corp', 2025),
+
+('Lot', 'Top', 'GiantX', 2025),
+('Closer', 'Jungle', 'GiantX', 2025),
+('Jackies', 'Mid', 'GiantX', 2025),
+('Noah', 'ADC', 'GiantX', 2025),
+('Jun', 'Support', 'GiantX', 2025),
+
+('Carlsen', 'Top', 'Team Heretics', 2025),
+('Sheo', 'Jungle', 'Team Heretics', 2025),
+('Kamiloo', 'Mid', 'Team Heretics', 2025),
+('Flakked', 'ADC', 'Team Heretics', 2025),
+('Stend', 'Support', 'Team Heretics', 2025),
+
+('JNX', 'Top', 'SK Gaming', 2025),
+('Isma', 'Jungle', 'SK Gaming', 2025),
+('Reeker', 'Mid', 'SK Gaming', 2025),
+('Rahel', 'ADC', 'SK Gaming', 2025);
+ 
+
+CREATE TABLE IF NOT EXISTS players (
+    player_id SERIAL PRIMARY KEY,
+    player_name VARCHAR(100) NOT NULL,
+    role VARCHAR(20) NOT NULL,
+    real_team VARCHAR(100) NOT NULL,
+    year_season INTEGER NOT NULL,
+    kda VARCHAR(15) DEFAULT '0/0/0',
+    points INTEGER DEFAULT 0,
+    image_url TEXT DEFAULT 'images/default.webp',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Eliminar si ya existen datos anteriores (por si hubo pruebas antes)
+DELETE FROM players
+WHERE real_team = 'Los Ratones' AND year_season = 2025;
+
+-- Insertar los jugadores correctos
+INSERT INTO players (player_name, role, real_team, year_season)
+VALUES
+('Thebausffs', 'Top', 'Los Ratones', 2025),
+('Velja', 'Jungle', 'Los Ratones', 2025),
+('Nemesis', 'Mid', 'Los Ratones', 2025),
+('Crownie', 'ADC', 'Los Ratones', 2025),
+('Rekkles', 'Support', 'Los Ratones', 2025);
+
+
+CREATE TABLE IF NOT EXISTS classification (
+    team_id SERIAL PRIMARY KEY,
+    team_name VARCHAR(100) NOT NULL,
+    position INTEGER NOT NULL,
+    matches_won INTEGER DEFAULT 0,
+    matches_lost INTEGER DEFAULT 0,
+    points INTEGER DEFAULT 0,
+    logo_url TEXT DEFAULT NULL,
+    year_season INTEGER NOT NULL DEFAULT 2025,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+-- Eliminar registros anteriores (opcional, solo si querés resetear)
+DELETE FROM classification WHERE year_season = 2025;
+
+-- Insertar equipos con valores base
+INSERT INTO classification (team_name, position, matches_won, matches_lost, points, logo_url, year_season)
+VALUES
+('G2 Esports', 1, 0, 0, 0, NULL, 2025),
+('Fnatic', 2, 0, 0, 0, NULL, 2025),
+('Movistar KOI', 3, 0, 0, 0, NULL, 2025),
+('Team BDS', 4, 0, 0, 0, NULL, 2025),
+('Karmine Corp', 5, 0, 0, 0, NULL, 2025),
+('GiantX', 6, 0, 0, 0, NULL, 2025),
+('Team Heretics', 7, 0, 0, 0, NULL, 2025),
+('SK Gaming', 8, 0, 0, 0, NULL, 2025),
+('Los Ratones', 9, 0, 0, 0, NULL, 2025);
+
+
+CREATE TABLE users (
+    user_id SERIAL PRIMARY KEY,
+    username VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password_hash TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+
+-- Actualizar rutas de imágenes para los jugadores
+UPDATE players SET image_url = 'images/Nemesis.webp' WHERE LOWER(player_name) = 'nemesis';
+UPDATE players SET image_url = 'images/Crownie.webp' WHERE LOWER(player_name) = 'crownie';
+UPDATE players SET image_url = 'images/supa.webp' WHERE LOWER(player_name) = 'supa';
+UPDATE players SET image_url = 'images/razork.webp' WHERE LOWER(player_name) = 'razork';
+UPDATE players SET image_url = 'images/nuc.webp' WHERE LOWER(player_name) = 'nuc';
+UPDATE players SET image_url = 'images/lyncas.webp' WHERE LOWER(player_name) = 'lyncas';
+UPDATE players SET image_url = 'images/kamiloo.webp' WHERE LOWER(player_name) = 'kamiloo';
+UPDATE players SET image_url = 'images/isma.webp' WHERE LOWER(player_name) = 'isma';
+UPDATE players SET image_url = 'images/hanssama.webp' WHERE LOWER(player_name) = 'hanssama';
+UPDATE players SET image_url = 'images/closer.webp' WHERE LOWER(player_name) = 'closer';
+UPDATE players SET image_url = 'images/alvaro.webp' WHERE LOWER(player_name) = 'alvaro';
+UPDATE players SET image_url = 'images/caps.webp' WHERE LOWER(player_name) = 'caps';
+UPDATE players SET image_url = 'images/Rekkles.webp' WHERE LOWER(player_name) = 'rekkles';
+UPDATE players SET image_url = 'images/yike.webp' WHERE LOWER(player_name) = 'yike';
+UPDATE players SET image_url = 'images/skewmond.webp' WHERE LOWER(player_name) = 'skewmond';
+UPDATE players SET image_url = 'images/patrik.webp' WHERE LOWER(player_name) = 'patrik';
+UPDATE players SET image_url = 'images/myrwn.webp' WHERE LOWER(player_name) = 'myrwn';
+UPDATE players SET image_url = 'images/loopy.webp' WHERE LOWER(player_name) = 'loopy';
+UPDATE players SET image_url = 'images/jojopyun.webp' WHERE LOWER(player_name) = 'jojopyun';
+UPDATE players SET image_url = 'images/ice.webp' WHERE LOWER(player_name) = 'ice';
+UPDATE players SET image_url = 'images/execute.webp' WHERE LOWER(player_name) = 'execute';
+UPDATE players SET image_url = 'images/canna.webp' WHERE LOWER(player_name) = 'canna';
+UPDATE players SET image_url = 'images/113.webp' WHERE LOWER(player_name) = '113';
+UPDATE players SET image_url = 'images/Baus.webp' WHERE LOWER(player_name) = 'baus';
+UPDATE players SET image_url = 'images/vladi.webp' WHERE LOWER(player_name) = 'vladi';
+UPDATE players SET image_url = 'images/sheo.webp' WHERE LOWER(player_name) = 'sheo';
+UPDATE players SET image_url = 'images/parus.webp' WHERE LOWER(player_name) = 'parus';
+UPDATE players SET image_url = 'images/mikyx.webp' WHERE LOWER(player_name) = 'mikyx';
+UPDATE players SET image_url = 'images/larssen.webp' WHERE LOWER(player_name) = 'larssen';
+UPDATE players SET image_url = 'images/jnx.webp' WHERE LOWER(player_name) = 'jnx';
+UPDATE players SET image_url = 'images/hylissang.webp' WHERE LOWER(player_name) = 'hylissang';
+UPDATE players SET image_url = 'images/elyoya.webp' WHERE LOWER(player_name) = 'elyoya';
+UPDATE players SET image_url = 'images/caliste.webp' WHERE LOWER(player_name) = 'caliste';
+UPDATE players SET image_url = 'images/upset.webp' WHERE LOWER(player_name) = 'upset';
+UPDATE players SET image_url = 'images/Velja.webp' WHERE LOWER(player_name) = 'velja';
+UPDATE players SET image_url = 'images/targamas.webp' WHERE LOWER(player_name) = 'targamas';
+UPDATE players SET image_url = 'images/reeker.webp' WHERE LOWER(player_name) = 'reeker';
+UPDATE players SET image_url = 'images/oscarinin.webp' WHERE LOWER(player_name) = 'oscarinin';
+UPDATE players SET image_url = 'images/malrang.webp' WHERE LOWER(player_name) = 'malrang';
+UPDATE players SET image_url = 'images/labrov.webp' WHERE LOWER(player_name) = 'labrov';
+UPDATE players SET image_url = 'images/jackies.webp' WHERE LOWER(player_name) = 'jackies';
+UPDATE players SET image_url = 'images/humanoid.webp' WHERE LOWER(player_name) = 'humanoid';
+UPDATE players SET image_url = 'images/czajek.webp' WHERE LOWER(player_name) = 'czajek';
+UPDATE players SET image_url = 'images/brokenblade.webp' WHERE LOWER(player_name) = 'brokenblade';
+UPDATE players SET image_url = 'images/carlsen.webp' WHERE LOWER(player_name) = 'carlsen';
