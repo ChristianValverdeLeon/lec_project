@@ -29,22 +29,46 @@ La aplicación ha sido diseñada con un enfoque completo de desarrollo web full-
 
 ---
 
-## Estructura del proyecto
-lec_project/
-├── pagina-oficial/ # Código principal de la web
-│ ├── index.php
-│ ├── login.php
-│ ├── register.php
-│ ├── jugadores.php
-│ ├── reglas.php
-│ └── assets (favicon, imágenes)
-├── config/ # Configuración de base de datos
-├── proxy-externo/ # Configuración de NGINX como proxy
-├── images/ # Avatares de jugadores
-├── panel-control/ # Sección administrativa (si aplica)
-├── docker-compose.yml
-├── Dockerfile
-├── README.md
+## 📂 Estructura del Proyecto
+El proyecto está organizado en distintos módulos para facilitar su mantenimiento, despliegue y escalabilidad. A continuación se describe cada parte del repositorio:
+
+pagina-oficial/ – 🌐 Sitio web principal
+Contiene el código fuente del frontend y la lógica del portal web:
+
+index.php: Página de inicio con presentación del proyecto.
+
+login.php, register.php, logout.php: Gestión de usuarios y sesiones.
+
+jugadores.php: Visualización dinámica de jugadores con filtros.
+
+reglas.php: Página informativa de normas del juego.
+
+lol.ico: Ícono favicon personalizado.
+
+assets/: Recursos estáticos como imágenes, íconos y hojas de estilo.
+
+config/ – ⚙️ Configuración de base de datos
+Contiene los parámetros de conexión y gestión con PostgreSQL:
+
+db.php: Archivo central de configuración y conexión a la base de datos.
+
+images/ – 🖼️ Avatares de Jugadores
+Carpeta destinada a alojar las imágenes de los jugadores usados en el frontend.
+
+panel-control/ – 🛠️ Panel de administración (opcional)
+Sección prevista para gestionar usuarios, ligas, puntuaciones y supervisar el sistema.
+
+proxy-externo/ – 🌍 Configuración de NGINX
+Incluye archivos de configuración de NGINX como proxy inverso para enrutar el tráfico hacia el contenedor adecuado.
+
+Archivos raíz del proyecto:
+docker-compose.yml: Orquestador de los servicios del proyecto con contenedores.
+
+Dockerfile: Imagen base para ejecutar el servidor web.
+
+*.sh: Scripts auxiliares para iniciar, detener o mover el entorno del proyecto (detener.sh, mover.sh, etc).
+
+---
 
 Autores
 Christian Valverde León. Mario Villarin Vaquerizo Hugo García Ortiz
